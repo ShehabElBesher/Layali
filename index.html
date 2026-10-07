@@ -15,9 +15,10 @@
 
     <!-- Open Graph / Facebook / Messenger / WhatsApp -->
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shehabElBesher.github.io/Layali/">
     <meta property="og:title" content="ليالي أحلى مع أم الباروكه المشهوره 👑">
     <meta property="og:description" content="ترتيب أبطال الهدايا 🎁 - شوف مين الأول في ترتيب هدايا اللايف! 🔴">
-    <meta property="og:image" content="og-preview.jpg">
+    <meta property="og:image" content="https://shehabElBesher.github.io/Layali/og-preview.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="ar_EG">
@@ -26,7 +27,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ليالي أحلى مع أم الباروكه المشهوره 👑">
     <meta name="twitter:description" content="ترتيب أبطال الهدايا 🎁 - شوف مين الأول في ترتيب هدايا اللايف! 🔴">
-    <meta name="twitter:image" content="og-preview.jpg">
+    <meta name="twitter:image" content="https://shehabElBesher.github.io/Layali/og-preview.jpg">
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#0a0a1a">
@@ -74,6 +75,11 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* ============================================
@@ -884,29 +890,356 @@
         }
 
         /* ============================================
-           📱 Responsive
+           📱 Mobile-First Responsive Design
+           UI/UX Pro Max - Touch-First Guidelines
            ============================================ */
-        @media (max-width: 768px) {
-            .header h1 { font-size: 2.2rem; }
-            .podium { gap: 8px; }
-            .podium-card .username { font-size: 0.9rem; }
-            .rank-1 .avatar-wrapper { width: 90px; height: 90px; }
-            .avatar-wrapper { width: 70px !important; height: 70px !important; }
-            .stats-bar { gap: 10px; }
-            .stat-item { min-width: 90px; padding: 10px 15px; }
-            .rank-row .gift-stats { gap: 10px; }
+
+        /* -- Smooth scroll & tap highlight -- */
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
         }
 
+        /* -- Safe area for notched phones (iPhone X+) -- */
+        body {
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+        }
+
+        /* -- Reduced motion for accessibility -- */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .bg-gradient-orbs, .bg-particles, .fire-container {
+                display: none !important;
+            }
+        }
+
+        /* -- Base mobile (up to 480px - small phones) -- */
         @media (max-width: 480px) {
-            .container { padding: 10px; }
-            .header h1 { font-size: 1.8rem; }
-            .podium { flex-direction: column; align-items: center; }
-            .podium-card { max-width: 280px; width: 100%; }
+            .container {
+                padding: 8px 12px;
+            }
+
+            /* Header */
+            .header {
+                padding: 25px 10px 20px;
+            }
+            .header h1 {
+                font-size: 1.7rem;
+                line-height: 1.3;
+            }
+            .header .subtitle {
+                font-size: 0.9rem;
+            }
+            .tiktok-logo { font-size: 1.8rem; }
+            .crown-icon { font-size: 2.8rem; }
+
+            /* Hero Profile */
+            .hero-profile {
+                width: 120px;
+                height: 120px;
+            }
+
+            /* Stats Bar - horizontal scroll on tiny screens */
+            .stats-bar {
+                gap: 8px;
+                padding: 10px 0;
+                justify-content: space-between;
+            }
+            .stat-item {
+                min-width: 0;
+                flex: 1;
+                padding: 10px 8px;
+                border-radius: 12px;
+            }
+            .stat-item .stat-number {
+                font-size: 1.3rem;
+            }
+            .stat-item .stat-label {
+                font-size: 0.7rem;
+            }
+
+            /* Podium - Stack vertically, #1 first */
+            .podium {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+                padding: 0;
+            }
+            .podium-card {
+                max-width: 100%;
+                width: 100%;
+            }
             .podium-card.rank-1 { order: 1; }
             .podium-card.rank-2 { order: 2; }
             .podium-card.rank-3 { order: 3; }
-            .rank-row { padding: 10px 12px; gap: 10px; }
-            .rank-row .gift-stats { flex-direction: column; gap: 5px; }
+            .podium-card .card-inner {
+                padding: 20px 15px 15px;
+                border-radius: 16px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 15px;
+                text-align: right;
+            }
+            .podium-card .crown-emoji {
+                display: none;
+            }
+            .podium-card .rank-badge {
+                position: static;
+                transform: none;
+                flex-shrink: 0;
+                width: 30px;
+                height: 30px;
+                font-size: 0.85rem;
+            }
+            .podium-card .avatar-wrapper,
+            .rank-1 .avatar-wrapper {
+                width: 60px !important;
+                height: 60px !important;
+                flex-shrink: 0;
+                margin: 0;
+            }
+            .podium-card .username {
+                font-size: 1rem;
+                margin-top: 0;
+            }
+            .podium-card .gift-info {
+                margin-top: 5px;
+                justify-content: flex-start;
+                gap: 12px;
+                font-size: 0.8rem;
+            }
+            .podium-card .pedestal { display: none; }
+            .fire-container { display: none; }
+
+            /* Ranking Rows */
+            .rank-row {
+                padding: 10px 12px;
+                gap: 10px;
+                border-radius: 12px;
+                min-height: 65px;
+            }
+            .rank-row .rank-number {
+                min-width: 28px;
+                height: 28px;
+                font-size: 0.85rem;
+                border-radius: 8px;
+            }
+            .rank-row .row-avatar {
+                width: 38px;
+                height: 38px;
+            }
+            .rank-row .user-info .name {
+                font-size: 0.9rem;
+            }
+            .rank-row .user-info .tier-badge {
+                font-size: 0.6rem;
+                padding: 1px 6px;
+            }
+            .rank-row .gift-stats {
+                flex-direction: column;
+                gap: 2px;
+                min-width: 55px;
+                text-align: center;
+            }
+            .rank-row .gift-stats .stat .stat-val {
+                font-size: 0.8rem;
+            }
+            .rank-row .gift-stats .stat .stat-lbl {
+                font-size: 0.55rem;
+            }
+
+            /* Section Titles */
+            .podium-section .section-title,
+            .ranking-section .section-title,
+            .tiers-section .section-title {
+                font-size: 1.1rem;
+                margin-bottom: 15px;
+            }
+
+            /* Tier Cards */
+            .tiers-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .tier-card {
+                padding: 15px 10px;
+                border-radius: 12px;
+            }
+            .tier-card .tier-icon { font-size: 2rem; }
+            .tier-card .tier-name { font-size: 0.85rem; }
+            .tier-card .tier-range { font-size: 0.7rem; }
+
+            /* Live Info */
+            .live-info {
+                padding: 20px 15px;
+                margin-top: 25px;
+                border-radius: 16px;
+            }
+            .live-info h3 { font-size: 1rem; }
+            .live-info p { font-size: 0.85rem; line-height: 1.7; }
+
+            /* Footer */
+            .footer {
+                padding: 20px 15px;
+                margin-top: 25px;
+            }
+            .footer .social-links a {
+                width: 44px;
+                height: 44px;
+            }
+            .footer p { font-size: 0.75rem; }
+
+            /* Reduce background effects on mobile for performance */
+            .bg-gradient-orbs .orb {
+                filter: blur(60px);
+                opacity: 0.2;
+            }
+            .bg-gradient-orbs .orb:nth-child(1) { width: 200px; height: 200px; }
+            .bg-gradient-orbs .orb:nth-child(2) { width: 180px; height: 180px; }
+            .bg-gradient-orbs .orb:nth-child(3) { width: 150px; height: 150px; }
+        }
+
+        /* -- Medium phones (481px - 768px) -- */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .header h1 { font-size: 2.2rem; }
+            .hero-profile {
+                width: 140px;
+                height: 140px;
+            }
+
+            .podium { gap: 10px; }
+            .podium-card .username { font-size: 0.9rem; }
+            .rank-1 .avatar-wrapper { width: 90px; height: 90px; }
+            .avatar-wrapper { width: 70px !important; height: 70px !important; }
+
+            .stats-bar { gap: 10px; }
+            .stat-item {
+                min-width: 0;
+                flex: 1;
+                padding: 12px 10px;
+            }
+            .stat-item .stat-number { font-size: 1.5rem; }
+
+            .rank-row .gift-stats { gap: 12px; }
+
+            .tiers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .bg-gradient-orbs .orb {
+                filter: blur(70px);
+                opacity: 0.25;
+            }
+        }
+
+        /* -- Large phones / small tablets landscape (769px - 1024px) -- */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                padding: 20px;
+            }
+            .hero-profile {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* -- Touch device optimizations -- */
+        @media (hover: none) and (pointer: coarse) {
+            /* Larger touch targets */
+            .rank-row {
+                min-height: 56px;
+                padding: 12px 15px;
+            }
+            .footer .social-links a {
+                width: 48px;
+                height: 48px;
+                font-size: 1.4rem;
+            }
+            .stat-item {
+                min-height: 48px;
+            }
+            .tier-card {
+                min-height: 48px;
+            }
+
+            /* Remove hover-only effects on touch */
+            .rank-row:hover {
+                transform: none;
+            }
+            .podium-card:hover {
+                transform: none;
+            }
+
+            /* Active states instead of hover for touch feedback */
+            .rank-row:active {
+                transform: scale(0.98);
+                border-color: var(--neon-pink);
+                transition: transform 0.1s ease;
+            }
+            .podium-card:active .card-inner {
+                transform: scale(0.97);
+                transition: transform 0.1s ease;
+            }
+            .stat-item:active {
+                transform: scale(0.95);
+                transition: transform 0.1s ease;
+            }
+            .tier-card:active {
+                transform: scale(0.95);
+                transition: transform 0.1s ease;
+            }
+            .footer .social-links a:active {
+                transform: scale(0.9);
+                border-color: var(--neon-pink);
+                transition: transform 0.1s ease;
+            }
+        }
+
+        /* -- Landscape phone -- */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .header { padding: 15px 10px; }
+            .hero-profile { width: 80px; height: 80px; }
+            .crown-icon { font-size: 2rem; }
+            .header h1 { font-size: 1.5rem; }
+            .podium {
+                flex-direction: row;
+                align-items: flex-end;
+            }
+            .podium-card .card-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .podium-card .pedestal { display: block; }
+        }
+
+        /* -- Very small phones (320px - e.g. iPhone SE 1st gen) -- */
+        @media (max-width: 360px) {
+            .header h1 { font-size: 1.5rem; }
+            .hero-profile { width: 100px; height: 100px; }
+            .stat-item .stat-number { font-size: 1.1rem; }
+            .podium-card .avatar-wrapper,
+            .rank-1 .avatar-wrapper {
+                width: 50px !important;
+                height: 50px !important;
+            }
+            .rank-row .row-avatar {
+                width: 32px;
+                height: 32px;
+            }
+            .rank-row .user-info .name { font-size: 0.8rem; }
+            .tiers-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .live-badge { font-size: 0.75rem; padding: 6px 14px; }
         }
 
         /* ============================================
@@ -1439,7 +1772,9 @@
             }
         }
 
-        for (let i = 0; i < 80; i++) {
+        const isMobile = window.innerWidth <= 768;
+        const particleCount = isMobile ? 25 : 80;
+        for (let i = 0; i < particleCount; i++) {
             particles.push(new Particle());
         }
 
@@ -1509,7 +1844,8 @@
         // ============================
         function launchConfetti() {
             const emojis = ['🎉', '✨', '🌟', '💫', '🎊', '👑', '💎', '🎁'];
-            for (let i = 0; i < 30; i++) {
+            const confettiCount = window.innerWidth <= 768 ? 12 : 30;
+            for (let i = 0; i < confettiCount; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
                     confetti.classList.add('confetti-piece');
